@@ -166,6 +166,12 @@ create table customerInfo(
 	custName VARCHAR(25)
 );
 
+alter table customerInfo add primary key (custID);
+
+desc customerInfo;
+
+
+
 
 
 
