@@ -244,4 +244,26 @@ select course, COUNT(*) as student_21_plus from students where age >= 21 group b
 
 
 
+----------------------------------------------------------------------------------------
+
+--Q1--
+
+select city, AVG(age) as average_age from students group by city;
+
+--Q2--
+
+select course, SUM(age) as total_age from students group by course;
+
+--Q3--
+
+select city, COUNT(*) as student_2 from students group by city having  COUNT(*) >= 2;
+
+--Q4--
+
+select course, AVG(age) as average_age from students group by course having AVG(age) >= 22;
+
+--Q5--
+
+select course, COUNT(*) as age_21 from students where age >= 21 group by course having COUNT(*) >= 2;
+
 
