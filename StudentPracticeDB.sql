@@ -98,5 +98,74 @@ select name, city from students where course = 'IT' order by age desc;
 
 select name, age, city from students where course = 'IT' and age > 20 order by age desc;
 
+----------------------------------------------------------------------------------------
+
+--Q1--
+
+select * from students where age between 21 and 24;
+
+--Q2--
+
+select name, age from students where age between 22 and 25;
+
+--Q3--
+
+select * from students where city in ('Colombo','Kandy');
+
+--Q4--
+
+select * from students where course in ('IT','Software');
+
+--Q5--
+
+select * from students where city not in ('Colombo','Kandy');
+
+--Q6--
+
+select * from students where name like 'K%';
+
+--Q7--
+
+select * from students where name like '%I';
+
+--Q8--
+
+select name, city from students where name like '%a%';
+
+--Q9--
+
+select name, course, age from students where age between 21 and 25 and course in('IT','Software');
+
+--Q10--
+
+select * from students where name like 'k%' or name like '%a%';
+
+--------------------------------------------------------------------------------------
+
+--Q1--
+
+SELECT * FROM students WHERE age BETWEEN 20 AND 23;
+
+--Q2--
+
+SELECT name, city FROM students WHERE city IN('Matara','Colombo');
+
+--Q3--
+
+SELECT name, course, city FROM students WHERE course NOT IN ('IT');
+
+--Q4--
+
+SELECT * FROM students WHERE name LIKE 'D%';
+
+--Q5--
+
+SELECT name, course, age 
+	FROM students WHERE age 
+	BETWEEN 21 AND 25 AND 
+	(name LIKE '%a%' OR course IN ('Software'));
+
+
+
 
 
