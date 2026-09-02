@@ -1,176 +1,107 @@
--- drop database electric_shopdb;
--- 
--- create database electric_shopDB;
--- 
--- use electric_shopDB;
--- 
--- create table customers(
--- 	customer_id INT,
--- 	name VARCHAR(20),
--- 	email VARCHAR(20)
--- );
--- 
--- insert into customers values
--- (1,'Alice Smith','alice@gmail.com'),
--- (2,'Bob Jones','bob@gmail.com');
--- 
--- show tables;
--- 
--- select * from customers;
--- 
--- create table products(
--- 	product_id INT,
--- 	product_name VARCHAR(25),
--- 	price DECIMAL(9,2),
--- 	stock_quantity INT
--- );
--- 
--- show tables;
--- 
--- insert into products values
--- (101,'Laptop',1200.00,10),
--- (102,'Wireless Mouse',25.00,50),
--- (103,'Keyboard',45.00,30);
--- 
--- select * from products;
--- 
--- create table orders(
--- 	order_id INT,
--- 	customer_id INT,
--- 	product_id INT,
--- 	quantity INT,
--- 	status VARCHAR(20)
--- );
--- 
--- show tables;
--- 
--- insert into orders values
--- (1001,1,101,1,'Shipped'),
--- (1002,2,102,2,'Processing');
--- 
--- select * from orders;
--- 
--- insert into customers values
--- (3,'Charile Brown','charile@email.com');
--- 
--- select * from customers;
--- 
--- insert into products values
--- (104,'Webcam',60.00,20);
--- 
--- select * from products;
--- 
--- insert into orders values
--- (1003,3,101,1,'Processing');
--- 
--- select * from orders;
--- 
--- update orders set status = 'Shipped' where order_id = 1003;
--- 
--- select * from orders;
--- 
--- delete from orders where order_id = 1002;
--- 
--- select * from orders;
--- 
--- insert into orders values
--- (1004,2,101,3,'Processing');
--- 
--- insert into orders values
--- (1005,1,102,2,'Processing'),
--- (1006,2,103,5,'Processing');
--- 
--- select * from orders;
--- 
--- update orders set status = 'Canceled' where order_id = 1005;
--- 
--- select * from orders;
--- 
--- update orders set status = 'Shipped' where order_id IN(1004,1006);
--- 
--- select * from orders;
--- 
--- update orders set status = 'Canceled' where order_id IN(1003,1006);
--- 
--- select * from orders;
--- 
--- delete from orders where status = 'Canceled';
--- 
--- select * from orders;
-
--- 
--- drop database scienceclubdb;
--- 
--- create database scienceclubDB;
--- 
--- use scienceclubDB;
--- 
--- create table scienceClub(
--- 	memberID INT primary key,
--- 	FullName VARCHAR(25) not null,
--- 	Email VARCHAR(20) unique,
--- 	Age INT check (age >= 16),
--- 	MembershipStatus VARCHAR(20) default 'pending'
--- );
--- 
--- insert into scienceClub(memberID,FullName,Email,Age,Membershipstatus)
--- values 
--- (1,'pathum','kuma18@gmail.com',25,'Done');
--- 
--- select * from scienceClub;
--- 
--- insert into scienceClub(memberID,fullname,email,age)
--- values 
--- (2,'John','john@gmail.com',26);
--- 
--- select * from scienceClub;
--- 
--- insert into scienceClub(memberID,FullName,Email,Age,Membershipstatus)
--- values 
--- (3,'Devid','dev@gmail.com',25,default);
--- 
--- select * from scienceClub;
-
-
-drop database scienceclubDB;
-
 drop database companyDB;
 
 create database companyDB;
 
 use companyDB;
 
-create table Departments(
-	DeptID INT primary key,
-	DeptName VARCHAR(50) not null
+CREATE TABLE Department (
+    dept_id INT PRIMARY KEY,
+    dept_name VARCHAR(100)
 );
 
-create  table staff(
-	staffID INT primary key,
-	staffName VARCHAR(100) not null,
-	DeptID INT,
-	foreign key (DeptID) references Departments(DeptID)
+CREATE TABLE Employee (
+    emp_id INT PRIMARY KEY,
+    emp_name VARCHAR(100),
+    designation VARCHAR(50),
+    salary DECIMAL(10,2),
+    dept_id INT,
+    manager_id INT NULL,
+    FOREIGN KEY (dept_id) REFERENCES Department(dept_id),
+    FOREIGN KEY (manager_id) REFERENCES Employee(emp_id)
 );
 
-desc staff;
-
-drop database shopdb;
-drop  database shop_db;
-
-create database shopDB;
-
-use shopdb;
-
-create table customerInfo(
-	custID INT,
-	custName VARCHAR(25)
+CREATE TABLE Project (
+    id INT PRIMARY KEY,
+    project_name VARCHAR(50),
+    department_id INT
 );
 
-alter table customerInfo add primary key (custID);
+CREATE TABLE EmployeeProject (
+    employee_id INT,
+    project_id INT,
+    hours_worked INT,
+    PRIMARY KEY (employee_id, project_id)
+);
 
-desc customerInfo;
+INSERT INTO Department (dept_id, dept_name) VALUES
+(1, 'Engineering'),
+(2, 'HR'),
+(3, 'Finance'),
+(4, 'Sales');
 
+INSERT INTO Employee (emp_id, emp_name, designation, salary, dept_id, manager_id) VALUES
+(1, 'Alice Thompson', 'CEO', 250000, NULL, NULL),
+(2, 'Bob Silva', 'Director', 180000, 1, 1),
+(3, 'Catherine Lee', 'Director', 175000, 4, 1),
+(4, 'David Brown', 'Manager', 140000, 1, 2),
+(5, 'Eva Green', 'Manager', 135000, 4, 3),
+(6, 'Frank White', 'Manager', 130000, 3, 1),
+(7, 'George King', 'Senior Engineer', 90000, 1, 4),
+(8, 'Hannah Scott', 'Senior Engineer', 92000, 1, 4),
+(9, 'Ian Adams', 'Senior Engineer', 88000, 4, 5),
+(10, 'Jack Turner', 'Engineer', 60000, 1, 7),
+(11, 'Karen Mitchell', 'Engineer', 62000, 1, 7),
+(12, 'Leo Carter', 'Engineer', 58000, 1, 8),
+(13, 'Mia Dawson', 'Engineer', 59000, 4, 9),
+(14, 'Nina Patel', 'HR Specialist', 70000, 2, NULL),
+(15, 'Oscar Brooks', 'Financial Analyst', 75000, 3, 6);
 
+INSERT INTO Project VALUES
+(1, 'Platform Upgrade', 1),
+(2, 'Recruitment System', 2),
+(3, 'Quarterly Audit', 3),
+(4, 'Sales Dashboard', 4),
+(5, 'Security Enhancement', 1);
+
+INSERT INTO EmployeeProject VALUES
+(2, 1, 120),
+(3, 1, 100),
+(11, 1, 80),
+(5, 2, 60),
+(4, 2, 40),
+(7, 3, 100),
+(8, 3, 90),
+(9, 4, 150),
+(10, 4, 100),
+(2, 5, 80),
+(3, 5, 70);
+
+--02
+
+select * from employee where salary > 70000;
+
+--03
+
+select * from employee where hiredDate > 2020;
+
+--04
+
+select * from employee where dept_id = 1;
+
+--05
+
+select employee.emp_name,department.dept_name from employee inner join department on
+department.dept_id = employee.dept_id;
+
+--06
+
+select employee.emp_name,
+
+use companydb;
+
+select * department, sum(employee.salary) AS total from 
+department left join employee on department.dept_id = employee.dept_id
+GROUP BY department.dept_id;
 
 
 
