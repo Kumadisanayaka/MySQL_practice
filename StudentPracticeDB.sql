@@ -165,6 +165,82 @@ SELECT name, course, age
 	BETWEEN 21 AND 25 AND 
 	(name LIKE '%a%' OR course IN ('Software'));
 
+-------------------------Arithmatic operators--------------------------
+
+use studentpracticeDB;
+
+--Q1--
+
+select name, age, age + 5 as age_plus_5 from students;
+
+--Q2--
+
+select name, age * 2 as double_age from students;
+
+--Q3--
+
+select name, age, age - 2 as age_minus_2 from students where course = 'IT';
+
+--Q4--
+
+select name, age, age / 2 as half_age from students where city = 'Kandy';
+
+--Q5--
+
+select name, age, ( age + 3) * 2 as result from students where age > 21;
+
+
+--------------------------Aggregate Fun-------------------------------
+
+--Q1--
+
+select COUNT(*) as total_students from students;
+
+--Q2--
+
+select SUM(age) as total_age from students;
+
+--Q3--
+
+select AVG(age) as average_age from students;
+
+--Q4--
+
+select 
+	MIN(age) as minimum_age,
+	MAX(age) as maximum_age 
+	from students;
+
+--Q5--
+
+select 
+	COUNT(*) as it_students,
+	SUM(age) as total_age,
+	AVG(age) as average_age
+	from students where course = 'IT';
+	
+
+----------------------------------------------------------------------------
+
+--Q1--
+
+select course, COUNT(*) as total_students from students group by course;
+
+--Q2--
+
+select course, AVG(age) as average_age from students group by course;
+
+--Q3--
+
+select city, COUNT(*) as total_students from students group by city;
+
+--Q4--
+
+select course, MAX(age) as maximum_age from students group by course;
+
+--Q5--
+
+select course, COUNT(*) as student_21_plus from students where age >= 21 group by course;
 
 
 
