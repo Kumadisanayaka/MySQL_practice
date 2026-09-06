@@ -267,3 +267,49 @@ select course, AVG(age) as average_age from students group by course having AVG(
 select course, COUNT(*) as age_21 from students where age >= 21 group by course having COUNT(*) >= 2;
 
 
+------------------------------------------------------------------------------------------
+
+use studentpracticedb;
+
+--Q1--
+
+select course, COUNT(*) as maximum_Student_group from students group by course order by maximum_Student_group desc;
+
+--Q2--
+
+select city, COUNT(*) as minimum_Students_group from students group by city order by minimum_students_group asc;
+
+--Q3--
+
+select course, AVG(age) as avarage_age from students group by course order by avarage_age desc;
+
+--Q4--
+
+select course, COUNT(*) as student_2_or_greater from students group by course having COUNT(*) >= 2 order by student_2_or_greater desc;
+
+--Q5--
+
+select city, COUNT(*) as student_age_21 from students where age >= 21 group by city order by student_age_21 desc;
+
+--Q6--
+
+select course, SUM(age) as total_age from students group by course order by total_age desc;
+
+--Q7--
+
+select city, AVG(age) as average_age from students group by city order by average_age asc;
+
+--Q8--
+
+select city, COUNT(*) as student_count_3 from students group by city having COUNT(*) >= 3 order by student_count_3  desc;
+
+--Q9--
+
+select course, AVG(age) as highst_average_age from students where age > 20 group by course order by highst_average_age desc;
+
+--Q10--
+
+
+
+
+
