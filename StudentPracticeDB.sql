@@ -309,7 +309,114 @@ select course, AVG(age) as highst_average_age from students where age > 20 group
 
 --Q10--
 
+select city, COUNT(*) as student_age_21 from students where age >= 21 group by city having COUNT(*) >= 2 order by student_age_21 desc;
 
+---------------------------------------------------------------------------------------------------------------------------------------
+
+--Q1--
+
+select distinct city from students;
+
+--Q2--
+
+select distinct course from students;
+
+--Q3--
+
+SELECT DISTINCT city, course FROM students;
+
+--Q4--
+
+select distinct city from students order by city asc;
+
+--Q5--
+
+select distinct course from students order by course desc;
+
+
+
+--Q6--
+
+select distinct city from students where age >= 21;
+
+--Q7--
+
+select distinct course from students where age < 21;
+
+--Q8--
+
+select distinct city from students where age >= 20 order by city asc;
+
+--Q9--
+
+select distinct course from students where city <> 'Colombo';
+
+--Q10--
+
+select distinct city, course from students where age >= 21 order by city asc;
+
+------------------------------------------------------------------------------------------
+
+--Q1--
+
+select * from students where city is null;
+
+--Q2--
+
+select * from students where city is not null;
+
+--Q3--
+
+select * from students where course is null;
+
+--Q4--
+
+select * from students where course is not null;
+
+--Q5--
+
+select * from students where distinct city is not null;
+
+--Q6--
+
+select name, city, COALESCE(city,'No city') as city from students;
+
+--Q7--
+
+select name, course, COALESCE(course, 'No course') as course from students where course is null;
+
+--Q8--
+
+select name, city, course, COALESCE(city, 'unknown') as city from students where city is null or COALESCE(course, 'Not assigned')
+as course from students where course is null;
+
+--Q9--
+
+select distinct city from students where city is null;
+
+--Q10--
+
+select distinct city from students where age >= 21 and city is null; 
+
+--Q11--
+
+select name, COALESCE(city, 'Unknown city') as city from students;
+
+--Q12--
+
+select * , COALESCE(course, 'Not Assigned') as course from students;
+
+--Q13--
+
+select name, city, course, COALESCE(city, 'Unknown city') as city, COALESCE(course, 'Not Assigned') as course from students;
+
+--Q14--
+
+select *, COALESCE(city, 'Unknown') as city from students where age >= 21;
+
+--Q15--
+
+select * from students where city is not null order by city asc;
 
 
 
