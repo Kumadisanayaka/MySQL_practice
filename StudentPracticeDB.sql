@@ -418,5 +418,259 @@ select *, COALESCE(city, 'Unknown') as city from students where age >= 21;
 
 select * from students where city is not null order by city asc;
 
+------------------------------------------------------------------------------------------------
+
+use StudentPracticeDB;
+
+--Q1--
+
+insert into students (id,name,course,age,city)
+values 
+(7,'Kumara','JAVA',24,'Colombo');
+
+select * from students;
+
+--Q2--
+
+insert into students (id,name,course,age,city)
+values
+(8,'Nimal','SQL',21,'Kandy'),
+(9,'Saman','Java',23,'Galle');
+
+--Q3--
+
+insert into students(id,name)
+values
+(10,'Amal');
+
+select * from students;
+
+--Q4--
+
+insert into students(id,name,age)
+values
+(11,'Ruwan',22);
+
+select * from students;
+
+--Q5--
+
+insert into students(id,name,course,age,city)
+values
+(12,'Kasun','Java',20,'Matara'),
+(13,'Chathura','SQL',22,'Colombo'),
+(14,'Dasun','Python',21,'Kandy');
+
+select * from students;
+
+
+-----------------------------------------------------------------------------------
+
+--Q1--
+
+update students 
+	set age = 25
+	where id = 12;
+
+--Q2--
+
+update students
+	set age = 24,
+		city = 'Galle'
+	where id = 13;
+
+--Q3--
+
+update students
+	set course = 'Java'
+	where id = 14;
+
+
+--Q4--
+
+update students 
+	set age = 23,
+		city = 'Kandy',
+		course = 'Java'
+	where id = 11;
+
+
+--Q5--
+
+update students 
+	set course = 'Java'
+	where city = 'Colombo';
+
+
+------------------------------------------------------------------------------------
+
+--Q1--
+
+delete from students where id = 11;
+
+select * from students;
+
+--Q2--
+
+delete from students where id = 14;
+
+--Q3--
+
+delete from students where city = 'Kandy';
+
+select * from students;
+
+--Q4--
+
+delete from students where age < 21;
+
+--Q5--
+
+delete from students where course = 'SQL' and age > 20;
+
+
+
+------------------------------------------------------------------------------------------
+
+--Q1--
+
+select * from students where city = 'Colombo';
+
+--Q2--
+
+update students 
+	set course = 'Java'
+	where city = 'Colombo';
+
+select * from students;
+
+--Q3--
+
+select * from students where age < 21;
+
+delete from students where age < 21;
+
+
+--Q4--
+
+select * from students where age >= 22 and course = 'Java';
+
+update students 
+	set age = 25
+	where age >= 22 and course = 'Java';
+
+--Q5--
+
+select * from students where age > 20 and city = 'Kandy';
+
+delete from students where age > 20 and city = 'Kandy';
+
+-------------------------------------------------------------------------------------------------------
+
+--Q1--
+
+start transaction;
+
+update students 
+	set age = 30
+	where id = 12;
+
+commit;
+
+--Q2--
+
+start transaction;
+
+update students
+	set age = 50
+	where id = 13;
+
+rollback;
+
+--Q3--
+
+start transaction;
+
+insert into students (id,name,course,age,city)
+values 
+(15,'Sunil','Java',22,'Galle');
+
+rollback;
+
+--Q4--
+
+start transaction;
+
+insert into students (id,name,course,age,city)
+values 
+(15,'Sunil','Java',22,'Galle');
+
+select * from students;
+
+commit;
+
+
+--Q5--
+
+start transaction;
+
+insert into students(id,name,course,age,city)
+values 
+(16,'Kamal','SQL',26,'Colombo');
+
+select * from students;
+
+rollback;
+
+----------------------------------------------------------------------------
+
+DROP TABLE students; 
+
+CREATE TABLE students (
+    id INT PRIMARY KEY,
+    name VARCHAR(50),
+    course VARCHAR(50),
+    age INT,
+    city VARCHAR(50)
+); 
+
+desc students; 
+
+INSERT INTO students (id, name, course, age, city)
+VALUES
+(1, 'Kamal', 'Java', 22, 'Colombo'),
+(2, 'Nimal', 'SQL', 21, 'Kandy');
+
+select * from students;
+
+INSERT INTO students (id, name, course, age, city)
+VALUES (1, 'Saman', 'JavaScript', 23, 'Galle'); 
+
+INSERT INTO students (id, name, course, age, city)
+VALUES (NULL, 'Saman', 'JavaScript', 23, 'Galle'); 
+
+INSERT INTO students (id, name, course, age, city)
+VALUES (3, 'Saman', 'JavaScript', 23, 'Galle'); 
+
+select * from students; 
+
+
+
+
+
+
+ 
+ 
+
+
+
+
+
+
+
+
+
+
+
 
 
