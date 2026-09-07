@@ -654,7 +654,108 @@ VALUES (3, 'Saman', 'JavaScript', 23, 'Galle');
 
 select * from students; 
 
+--------------------------------------------------------------------------------------------------
 
+use studentPracticeDB;
+
+drop table students;
+
+CREATE TABLE courses (
+    id INT PRIMARY KEY,
+    course_name VARCHAR(50)
+);
+
+create table students(
+	id INT primary key,
+	name varchar(50),
+	course_id int,
+	age int,
+	city varchar(50),
+	foreign key (course_id) references courses(id)
+);
+
+show tables;
+
+desc courses;
+
+desc students;
+
+INSERT INTO courses (id, course_name)
+VALUES
+(1, 'Java'),
+(2, 'SQL'),
+(3, 'JavaScript'),
+(4, 'Python');
+
+INSERT INTO students (id, name, course_id, age, city)
+VALUES
+(1, 'Kamal', 1, 22, 'Colombo'),
+(2, 'Nimal', 2, 21, 'Kandy'),
+(3, 'Saman', 1, 23, 'Galle'),
+(4, 'Amal', 3, 24, 'Colombo'),
+(5, 'Ruwan', 4, 20, 'Matara');
+
+select * from courses;
+
+select * from students;
+
+
+INSERT INTO courses (id, course_name)
+VALUES (10, 'C++');
+
+INSERT INTO students (id, name, course_id, age, city)
+VALUES (6, 'Sunil', 10, 25, 'Kandy');
+
+delete from courses where id = 2;
+
+CREATE TABLE students_unique (
+    id INT PRIMARY KEY,
+    name VARCHAR(50) UNIQUE,
+    course VARCHAR(50),
+    age INT
+);
+
+INSERT INTO students_unique (id, name, course, age)
+VALUES
+(1, 'Kamal', 'Java', 22),
+(2, 'Nimal', 'SQL', 21);
+
+INSERT INTO students_unique (id, name, course, age)
+VALUES (3, 'Kamal', 'Python', 23);
+
+INSERT INTO students_unique (id, name, course, age)
+VALUES (4, NULL, 'SQL', 20);
+
+alter table students_unique add email varchar(50) unique;
+
+desc students_unique;
+
+CREATE TABLE students_notnull (
+    id INT PRIMARY KEY,
+    name VARCHAR(50) NOT NULL,
+    course VARCHAR(50),
+    age INT
+);
+
+desc students_notnull;
+
+INSERT INTO students_notnull (id, name, course, age)
+VALUES (1, 'Kamal', 'Java', 22);
+
+select * from students_notnull;
+
+INSERT INTO students_notnull (id, name, course, age)
+VALUES (2, NULL, 'SQL', 21);
+
+INSERT INTO students_notnull (id, name, course, age)
+VALUES (3, 'Saman', NULL, 23);
+
+INSERT INTO students_notnull (id, course, age)
+VALUES (4, 'Python', 24);
+
+alter table students_notnull modify age int not null;
+
+desc students_notnull;
 
 
 
