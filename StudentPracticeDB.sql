@@ -757,6 +757,72 @@ alter table students_notnull modify age int not null;
 
 desc students_notnull;
 
+use studentPracticeDB;
+
+CREATE TABLE students_auto (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(50),
+    age INT
+);
+
+INSERT INTO students_auto (name, age)
+VALUES ('Kamal', 22);
+
+select * from students_auto;
+
+INSERT INTO students_auto (name, age)
+VALUES ('Nimal', 21);
+
+INSERT INTO students_auto (id, name, age)
+VALUES (10, 'Sunil', 25);
+
+INSERT INTO students_auto (name, age)
+VALUES ('Kumara', 26);
+
+show tables;
+
+select * from courses;
+
+select * from students;
+
+-----------------------------------------------------------------------------
+
+select name, age, if(age >= 18, 'Adult','Minor') as status from students;
+
+select 
+	name,
+	age,
+	case
+		when age < 18 then 'Minor'
+		when age < 30 then 'Young Adult'
+		else 'Adult'
+	end as age_group from students;
+
+
+select 
+	name,
+	age,
+	case
+		when age > 40 then 'Senior'
+		when age >= 26 then 'Adult'
+		when age >= 18 then 'Young'
+		else 'Minor'
+	end as age_group from students;
+
+
+
+	
+	
+	
+
+
+
+
+
+
+
+
+
 
 
 
