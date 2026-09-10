@@ -163,6 +163,95 @@ inner join departments as d
 on e.department_id = d.department_id
 group by d.department_name;
 
+use company_db_practice;
+
+--Q11--
+
+select 
+	d.department_name,
+	SUM(e.salary) as total_salary
+from departments as d
+inner join employees as e
+on d.department_id = e.department_id
+group by d.department_name
+order by total_salary desc;
+
+--Q12--
+
+select 
+	d.department_name,
+	AVG(e.salary) as average_salary
+from departments as d
+inner join employees as e
+on d.department_id = e.department_id
+group by d.department_name
+order by average_salary desc;
+
+--Q13--
+
+select 
+	d.department_name,
+	COUNT(*) as employee_count
+from employees as e
+inner join departments as d
+on e.department_id = d.department_id
+where e.salary > 60000
+group by d.department_name
+having COUNT(e.employee_id)>1;
+
+--Q14--
+
+select 
+	d.department_name,
+	COUNT(*) as employee_count
+from employees as e
+inner join departments as d
+on e.department_id = d.department_id
+where e.salary > 60000
+group by d.department_name
+having COUNT(e.employee_id)>1;
+
+--Q15--
+
+select 
+	d.department_name,
+	COUNT(*) as employee_count
+from employees as e
+inner join departments as d
+on e.department_id = d.department_id
+where e.salary > 60000
+group by d.department_name
+having COUNT(e.employee_id)>1
+order by employee_count desc;
+
+--Q16--
+
+select 
+	d.department_name,
+	SUM(e.salary) as total_salary
+from employees as e
+inner join departments as d
+on e.department_id = d.department_id
+where e.salary > 50000
+group by d.department_name
+having total_salary > 60000
+order by total_salary desc;
+
+--Q17--
+
+select 
+	d.department_name,
+	AVG(e.salary) as average_salary
+from employees as e
+inner join departments as d
+on e.department_id = d.department_id
+where e.salary > 50000
+group by d.department_name
+having average_salary > 60000
+order by average_salary  desc;
+
+
+
 
 
 
